@@ -6,13 +6,14 @@ import lessParser from 'postcss-less'
 import postcssImport from 'postcss-import'
 import vue from '@vitejs/plugin-vue'
 import jsx from '@vitejs/plugin-vue-jsx'
+import styleImport from 'vite-plugin-style-import'
 
 function loadGloalStyles(...paths: string[]) {
   const styles = Promise.all(
     paths.map((path) =>
       postcss().use(postcssImport()).process(readFileSync(path, 'utf8'), {
         from: path,
-        parser: lessParser
+        parser: lessParser,
       })
     )
   ).then((results) => results.join(''))
@@ -21,37 +22,47 @@ function loadGloalStyles(...paths: string[]) {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), jsx()],
+  plugins: [
+    vue(),
+    jsx(),
+    styleImport({
+      libs: [
+        {
+          libraryName: 'vant',
+          esModule: true,
+          resolveStyle: (name) => `vant/es/${name}/style/index`,
+        },
+      ],
+    }),
+  ],
   resolve: {
     alias: [
       {
         find: '@',
-        replacement: resolve(__dirname, '/src')
-      }
-    ]
+        replacement: resolve(__dirname, '/src'),
+      },
+    ],
   },
   css: {
     preprocessorOptions: {
       less: {
-        additionalData: loadGloalStyles(
-          './src/styles/variables.less',
-          './src/styles/mixins.less'
-        )
-      }
-    }
+        javascriptEnabled: true,
+        additionalData: loadGloalStyles('./src/styles/variables.less', './src/styles/mixins.less'),
+      },
+    },
   },
   esbuild: {
     jsxFactory: 'h',
-    jsxFragment: 'Fragment'
+    jsxFragment: 'Fragment',
   },
   server: {
     proxy: {
       '/api': {
         target: 'http://my-json-server.typicode.com/',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
-      }
-    }
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
   },
   build: {
     polyfillDynamicImport: true,
@@ -60,9 +71,9 @@ export default defineConfig({
       output: {
         manualChunks: {
           vender: ['vue', 'pinia', 'vue-router'],
-          libs: ['vue-request', 'lodash']
-        }
-      }
-    }
-  }
+          libs: ['vue-request', 'lodash'],
+        },
+      },
+    },
+  },
 })

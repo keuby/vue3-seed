@@ -10,29 +10,14 @@
 import { defineComponent } from '@vue/runtime-core'
 
 export default defineComponent({
-  name: 'App'
+  name: 'App',
 })
 </script>
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+<style>
+body {
+  font-size: 16px;
+  background-color: #f8f8f8;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>

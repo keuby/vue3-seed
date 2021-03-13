@@ -1,13 +1,13 @@
 import { RouteRecordRaw } from 'vue-router'
-import Home from '@/views/Home.vue'
+import Home from '@/pages/home/index.vue'
 
 export default [
   {
     path: '/',
-    component: Home
+    component: Home,
   },
   {
     path: '/store',
-    component: () => import(/* webpackChunkName: "store" */ '@/views/Store.vue')
-  }
+    component: () => import(/* webpackChunkName: "store" */ '@/pages/store/index.vue'),
+  },
 ] as Array<RouteRecordRaw>

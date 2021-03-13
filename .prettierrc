@@ -8,6 +8,5 @@
   "eslintIntegration": true,
   "semi": false,
   "vueIndentScriptAndStyle": false,
-  "trailingComma": "none",
   "printWidth": 100
 }
