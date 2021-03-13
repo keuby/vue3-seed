@@ -1,18 +1,22 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <div>{{ title }} -> {{ counter }}</div>
+    <img alt="Vue logo" src="@/assets/logo.png" />
+    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"></HelloWorld>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import HelloWorld from "/src/components/HelloWorld.vue"; // @ is an alias to /src
+import HelloWorld from '@/components/HelloWorld.vue'
+import { ref } from '@vue/reactivity'
+import { defineComponent } from '@vue/runtime-core'
 
 export default defineComponent({
-  name: "Home",
-  components: {
-    HelloWorld
+  components: { HelloWorld },
+  setup() {
+    const title = ref('home title')
+    const counter = ref(1)
+    return { title, counter }
   }
-});
+})
 </script>
