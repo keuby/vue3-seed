@@ -15,13 +15,17 @@
 import { useRequest } from 'vue-request'
 import { useTokenStore } from '@/store'
 import { defineComponent, ref, watch } from '@vue/runtime-core'
+import { useAxios } from '@/plugins/axios'
 
 export default defineComponent({
   setup() {
     const user = useTokenStore()
     const inputValue = ref('')
 
-    const { data, loading, refresh } = useRequest('/api/typicode/demo/db')
+    const request = useAxios()
+    const { data, loading, refresh } = useRequest(() =>
+      request.get('/typicode/demo/db')
+    )
 
     watch(
       () => inputValue.value,
