@@ -12,7 +12,7 @@ function loadGloalStyles(...paths: string[]) {
     paths.map((path) =>
       postcss().use(postcssImport()).process(readFileSync(path, 'utf8'), {
         from: path,
-        parser: lessParser
+        parser: lessParser,
       })
     )
   ).then((results) => results.join(''))
@@ -26,32 +26,29 @@ export default defineConfig({
     alias: [
       {
         find: '@',
-        replacement: resolve(__dirname, '/src')
-      }
-    ]
+        replacement: resolve(__dirname, '/src'),
+      },
+    ],
   },
   css: {
     preprocessorOptions: {
       less: {
-        additionalData: loadGloalStyles(
-          './src/styles/variables.less',
-          './src/styles/mixins.less'
-        )
-      }
-    }
+        additionalData: loadGloalStyles('./src/styles/variables.less', './src/styles/mixins.less'),
+      },
+    },
   },
   esbuild: {
     jsxFactory: 'h',
-    jsxFragment: 'Fragment'
+    jsxFragment: 'Fragment',
   },
   server: {
     proxy: {
       '/api': {
         target: 'http://my-json-server.typicode.com/',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
-      }
-    }
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
   },
   build: {
     polyfillDynamicImport: true,
@@ -60,9 +57,9 @@ export default defineConfig({
       output: {
         manualChunks: {
           vender: ['vue', 'pinia', 'vue-router'],
-          libs: ['vue-request', 'lodash']
-        }
-      }
-    }
-  }
+          libs: ['vue-request', 'lodash'],
+        },
+      },
+    },
+  },
 })

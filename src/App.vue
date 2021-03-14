@@ -10,7 +10,7 @@
 import { defineComponent } from '@vue/runtime-core'
 
 export default defineComponent({
-  name: 'App'
+  name: 'App',
 })
 </script>
 

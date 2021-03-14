@@ -15,10 +15,10 @@ export default function (app: App): void {
     baseURL: import.meta.env.VITE_SERVER_URL as string,
     headers: {
       'Cache-Control': 'no-cache',
-      'Content-Type': 'application/json;charset=utf-8'
+      'Content-Type': 'application/json;charset=utf-8',
     },
     timeout: 10000,
-    adapter: adapter(axios.defaults.adapter) // 初始化 adapter
+    adapter: adapter(axios.defaults.adapter), // 初始化 adapter
   })
 
   // 初始化 intercepter

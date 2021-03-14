@@ -4,10 +4,7 @@
     <p>token: {{ user.bearerToken }}</p>
     <div>
       set token:
-      <input
-        v-model="inputValue"
-        type="text"
-      />
+      <input v-model="inputValue" type="text" />
     </div>
     <div v-if="loading">loading</div>
     <div v-else>{{ data }}</div>
@@ -33,6 +30,6 @@ export default defineComponent({
       () => inputValue.value === 'reload' && refresh()
     )
     return { user, data, inputValue, loading }
-  }
+  },
 })
 </script>
