@@ -1,8 +1,9 @@
 {
 	"recommendations": [
+		"stylelint.vscode-stylelint",
 		"dbaeumer.vscode-eslint",
 		"editorconfig.editorconfig",
         "esbenp.prettier-vscode",
-        "johnsoncodehk.volar"
+        "octref.vetur"
 	]
 }

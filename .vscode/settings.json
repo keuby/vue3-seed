@@ -1,7 +1,7 @@
 {
-    "volar.tsPlugin": true,
+    "editor.formatOnSave": true,
     "[vue]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "octref.vetur"
     },
     "[less]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -10,4 +10,14 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "typescript.tsdk": "node_modules/typescript/lib",
+    "stylelint.configFile": ".stylelintrc",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.stylelint": true,
+    },
+    "vetur.format.defaultFormatter.html": "js-beautify-html",
+    "vetur.format.defaultFormatter.css": "none",
+    "vetur.format.defaultFormatter.less": "none",
+    "vetur.format.defaultFormatter.scss": "none",
+    "vetur.format.defaultFormatter.postcss": "none",
+    "prettier.requireConfig": true,
 }

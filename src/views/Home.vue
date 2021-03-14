@@ -1,7 +1,10 @@
 <template>
   <div class="home">
     <div>{{ title }} -> {{ counter }}</div>
-    <img alt="Vue logo" src="@/assets/logo.png" />
+    <img
+      alt="Vue logo"
+      src="@/assets/logo.png"
+    />
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"></HelloWorld>
   </div>
 </template>

@@ -4,7 +4,10 @@
     <p>token: {{ user.bearerToken }}</p>
     <div>
       set token:
-      <input v-model="inputValue" type="text" />
+      <input
+        v-model="inputValue"
+        type="text"
+      />
     </div>
     <div v-if="loading">loading</div>
     <div v-else>{{ data }}</div>
@@ -15,17 +18,15 @@
 import { useRequest } from 'vue-request'
 import { useTokenStore } from '@/store'
 import { defineComponent, ref, watch } from '@vue/runtime-core'
-import { useAxios } from '@/plugins/axios'
+import { useHttpClient } from '@/plugins/http'
 
 export default defineComponent({
   setup() {
     const user = useTokenStore()
     const inputValue = ref('')
 
-    const request = useAxios()
-    const { data, loading, refresh } = useRequest(() =>
-      request.get('/typicode/demo/db')
-    )
+    const http = useHttpClient()
+    const { data, loading, refresh } = useRequest(() => http.get('/typicode/demo/db'))
 
     watch(
       () => inputValue.value,
